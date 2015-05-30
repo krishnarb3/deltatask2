@@ -9,4 +9,8 @@
     <string name="entername">Enter Name here</string>
     <string name="enterphone">Enter Phone Number here</string>
     <string name="go">GO</string>
+    <string name="sort_ascending">Sort Ascending</string>
+    <string name="sort_descending">SORT DESCENDING</string>
+    <string name="contact_search">Contact Search</string>
+    <string name="search">Search</string>
 </resources>

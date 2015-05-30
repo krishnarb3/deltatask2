@@ -12,14 +12,59 @@
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp" />
+        android:layout_marginBottom="120dp" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:id="@+id/listView"
-        android:layout_alignParentTop="true"
-         />
+        android:layout_alignParentTop="true" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_ascending"
+        android:id="@+id/button_sortascending"
+        android:layout_marginBottom="48dp"
+        android:layout_above="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_descending"
+        android:id="@+id/button_sortdescending"
+        android:layout_alignTop="@+id/button_sortascending"
+        android:layout_toRightOf="@+id/button_sortascending"
+        android:layout_toEndOf="@+id/button_sortascending" />
+
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:textSize="12sp"
+        android:hint="@string/contact_search"
+        android:id="@+id/edittextcontactsearch"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="53dp"
+        android:layout_alignLeft="@+id/button_sortascending"
+        android:layout_alignStart="@+id/button_sortascending"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:id="@+id/buttonsearch"
+        android:layout_alignTop="@+id/edittextcontactsearch"
+        android:layout_alignBottom="@+id/edittextcontactsearch"
+        android:layout_toRightOf="@+id/edittextcontactsearch"
+        android:layout_toEndOf="@+id/edittextcontactsearch" />
 
 
 </RelativeLayout>

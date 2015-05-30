@@ -29,7 +29,7 @@ public class newcontactactivity extends ActionBarActivity {
                 Intent intent = new Intent();
                 intent.putExtra("name",name);
                 intent.putExtra("number",number);
-                setResult(2,intent);
+                setResult(1,intent);
                 finish();
             }
         });

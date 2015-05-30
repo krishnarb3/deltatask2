@@ -7,14 +7,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class MainActivity extends ActionBarActivity {
-    Button buttonnewcontact;
+    Button buttonnewcontact,buttonsortasc,buttonsortdesc,buttonsearch;
+    EditText contactsearch;
     Boolean newcontactcreated=false;
     ArrayList<String> contactnames = new ArrayList<String>();
     String contactname;
@@ -28,7 +32,49 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 newcontactcreated=true;
                 Intent i = new Intent(MainActivity.this,newcontactactivity.class);
-                startActivityForResult(i,2);
+                startActivityForResult(i,1);
+            }
+        });
+        buttonsortasc = (Button)findViewById(R.id.button_sortascending);
+        buttonsortasc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(contactnames);
+                String [] namelist = contactnames.toArray(new String[contactnames.size()]);
+                ListAdapter adapter = new customrow(getApplicationContext(),namelist);
+                ListView listView = (ListView)findViewById(R.id.listView);
+                listView.setAdapter(adapter);
+            }
+        });
+        buttonsortdesc = (Button)findViewById(R.id.button_sortdescending);
+        buttonsortdesc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort(contactnames);
+                Collections.reverse(contactnames);
+                String [] namelist = contactnames.toArray(new String[contactnames.size()]);
+                ListAdapter adapter = new customrow(getApplicationContext(),namelist);
+                ListView listView = (ListView)findViewById(R.id.listView);
+                listView.setAdapter(adapter);
+            }
+        });
+        contactsearch = (EditText)findViewById(R.id.edittextcontactsearch);
+        buttonsearch = (Button)findViewById(R.id.buttonsearch);
+        buttonsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String s = contactsearch.getText().toString();
+                boolean flag=false;
+                for(String x:contactnames)
+                {
+                if(s.equals(x))
+                {
+                    Toast.makeText(getApplicationContext(),"Contact found : "+s,Toast.LENGTH_LONG).show();
+                    flag=true;
+                }
+                }
+                if(!flag)
+                    Toast.makeText(getApplicationContext(),"Missing",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -36,11 +82,10 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==2)
+        if(requestCode==1)
         {
         String newstring = data.getStringExtra("name");
         contactnames.add(newstring);
-            contactnames.add(contactname);
             String [] namelist = contactnames.toArray(new String[contactnames.size()]);
             ListAdapter adapter = new customrow(this,namelist);
             ListView listView = (ListView)findViewById(R.id.listView);
